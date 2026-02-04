@@ -36,11 +36,10 @@ Core Goals
    Remaining time
    Labels and origin (human / agent)
 7. MCP-native integration
-   PomodoroAI exposes an MCP interface
-   AI agents can:
-   Control timers
-   Subscribe to timer events
-   React programmatically to completion signals
+   PomodoroAI exposes an MCP interface with:
+   Tools: `startTimer`, `stopTimer`, `getStatus`
+   Notifications: `notifications/message` emitted on timer completion
+   AI agents can control timers and react programmatically to completion signals
 8. Reliability over cleverness
    Timer completion events must be reliable for connected clients
    Agent notifications are best-effort; disconnected agents will not receive them
