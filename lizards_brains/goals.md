@@ -21,7 +21,9 @@ Core Goals
 4. Clear signaling on completion
    When a timer ends or is stopped:
    Humans are notified via UI and sound
-   AI agents are notified via an MCP backward channel
+   AI agents are notified via MCP `notifications/message` when connected
+   Agents that cannot receive notifications can poll via `getStatus` as fallback
+   Delivery is best-effort; if the agent disconnects, the notification is lost
    Completion is an explicit event, not something inferred
 5. Explicit state and lifecycle
    Timer state is always clear and queryable
@@ -40,8 +42,9 @@ Core Goals
    Subscribe to timer events
    React programmatically to completion signals
 8. Reliability over cleverness
-   Timer completion events must be reliable
-   Agent notifications should not be silently lost when possible
+   Timer completion events must be reliable for connected clients
+   Agent notifications are best-effort; disconnected agents will not receive them
+   Agents requiring guaranteed delivery should poll `getStatus`
    Restarting the app should not corrupt active state
 
 Design Principles
@@ -53,6 +56,5 @@ Composable: works alongside existing tools and agent workflows
 Open Questions (to refine later)
 Single active timer vs multiple concurrent timers
 Strict vs free-form label conventions
-Event buffering guarantees for MCP subscribers
 Whether breaks are modeled explicitly or left to the user
 
