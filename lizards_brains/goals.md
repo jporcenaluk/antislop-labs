@@ -8,6 +8,8 @@ Core Goals
    Runs entirely on a local machine
    No required cloud services
    State and history are stored locally
+   Single active timer at a time (true to Pomodoro philosophy)
+   Completed sessions are stored in queryable history
 2. Human + AI symmetry
    Humans and AI agents can create, start, and stop timeblocks
    Both are treated as first-class actors in the system
@@ -32,6 +34,9 @@ Core Goals
    Timer state is always clear and queryable
    One source of truth for running sessions
    Well-defined session lifecycle (created → running → stopped/completed)
+   History stores per session: label, duration, start time, end time, origin, completion status
+   Completion status distinguishes: completed (ran full duration) vs stopped (ended early)
+   History retained indefinitely; user manages deletion manually
 6. UI as primary interface
    Visual UI for humans is a first-class concern
    UI clearly shows:
@@ -40,7 +45,8 @@ Core Goals
    Label and origin (human / agent)
 7. MCP-native integration
    PomodoroAI exposes an MCP interface with:
-   Tools: `startTimer`, `stopTimer`, `getStatus`
+   Tools: `startTimer`, `stopTimer`, `getStatus`, `getHistory`
+   `getHistory` supports optional date range filter
    Notifications: `notifications/message` emitted on timer completion
    AI agents can control timers and react programmatically to completion signals
 8. Reliability over cleverness
@@ -56,6 +62,5 @@ Interrupt-friendly: safe to stop, resume, or restart
 Composable: works alongside existing tools and agent workflows
 
 Open Questions (to refine later)
-Single active timer vs multiple concurrent timers
 Whether breaks are modeled explicitly or left to the user
 
