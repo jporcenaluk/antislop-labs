@@ -15,8 +15,11 @@ Core Goals
 3. Simple timeblocks
    A session is defined by:
    Duration (N minutes)
-   Labels (short phrases, lightweight context)
-   Labels are optimized for UI readability, not long descriptions
+   Label (single freeform string, max 64 characters)
+   Label constraints:
+     - Any UTF-8 characters except control characters
+     - Case-insensitive for search/filtering
+     - Optimized for UI readability, not long descriptions
    No mandatory task hierarchies or project structures
 4. Clear signaling on completion
    When a timer ends or is stopped:
@@ -34,7 +37,7 @@ Core Goals
    UI clearly shows:
    Active session
    Remaining time
-   Labels and origin (human / agent)
+   Label and origin (human / agent)
 7. MCP-native integration
    PomodoroAI exposes an MCP interface with:
    Tools: `startTimer`, `stopTimer`, `getStatus`
@@ -54,6 +57,5 @@ Composable: works alongside existing tools and agent workflows
 
 Open Questions (to refine later)
 Single active timer vs multiple concurrent timers
-Strict vs free-form label conventions
 Whether breaks are modeled explicitly or left to the user
 
