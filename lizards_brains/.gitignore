@@ -1,5 +1,6 @@
 # IDE
 .idea/
+.claude
 
 # Python
 __pycache__/
@@ -12,3 +13,20 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Node
+node_modules/
+
+# SvelteKit
+.svelte-kit/
+build/
+
+# Tauri
+src-tauri/target/
+
+# Misc
+dist/
+*.log
+
+# Local MCP config
+.mcp.json
